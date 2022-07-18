@@ -135,7 +135,7 @@ sudo vi hosts
 cd /etc/apache2/sites-available/
 sudo vi nizar-custom.conf
 
--> isi nizar-custom.conf
+-> isi nizar-com.conf
 <VirtualHost *:80>
 #pilih satu domain yg iisikan di file hosts (/etc/hosts)
 ServerName nizar.com
@@ -151,13 +151,16 @@ ServerName nizar.com
 
 save dah....
 
+# daftar file .conf (mesin)
+	1. nizar-com.conf
+	2. warungnizar-com.conf
 #unmount semua mesin dulu
 sudo a2dissite *
 #mount mesin (bisa lebih dari satu)
 	##contoh hanya ingin 1 mesin
-	sudo a2ensite nizar.com
+	sudo a2ensite nizar-com.conf
 	##contoh 2/lebih mesin
-	sudo a2ensite nizar.com warung.nizar.com
+	sudo a2ensite nizar-com.conf warungnizar-com.conf
 
 	NB: nama domain mesin yg pertama akan dijadikan root directory, dan yg lain bisa diakses sesuai name server
 
