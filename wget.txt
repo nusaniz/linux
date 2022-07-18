@@ -1,0 +1,12 @@
+sudo apt install wget
+
+# Usage
+-i -> url download
+-P -> folder save
+
+## Single url
+wget -i img.com/tree.jpg -P /etc/media
+
+## Multiple list url
+1. Buat file txt yang berisi daftar url yg ingin di download (list.txt)
+wget -i list.txt -P /etc/media
