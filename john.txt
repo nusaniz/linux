@@ -1,0 +1,18 @@
+# Path
+locate office2john
+/etc/share/john/
+
+# Ektrak hash from file
+sudo python3 office2john file.docx > hash.txt
+sudo pdf2john.pl file.pdf > hash.txt
+rar2john file.rar > hash.txt
+zip2john file.zip > hash.txt
+
+# Match hash
+john --wordlist=word.txt hash.txt
+
+# If hash file dont show result
+john hash.txt --show
+
+
+-nizar

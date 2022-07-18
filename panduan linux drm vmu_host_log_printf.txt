@@ -1,0 +1,7 @@
+Ganti display device menjad VBOXVGA
+
+
+sudo fsck /dev/sda1
+atau
+fsck /dev/sda1
+exit

@@ -1,0 +1,175 @@
+# Menjalankan Apache2
+sudo service apache2 start
+
+# Syntax
+start | stop | restart | --help
+
+# Agar file .htaccess di folder html bisa berjalan
+locate apache2.conf
+sudo vi /etc/apache2/apache2.conf
+
+## ubah dibawah ini
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+</Directory>
+
+## menjadi dibawah ini (after)
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+	AllowOverride All
+        Require all granted
+</Directory>
+
+## Menghilangkan server name apache bottom port (file apache2.conf)
+ServerSignature Off
+
+# Membuat file .htaccess
+Options +Indexes
+IndexOptions FancyIndexing
+IndexIgnore nama.txt
+DirectoryIndex nomer.txt
+
+# Mengubah tulisan header Index of/
+1. buat header.html
+<main>
+<h1 class="title">Index of/<h1>
+
+2. buat footer.html
+  </main>
+
+  <footer>
+    <!--
+      Add any other listing related copyright content here
+    -->
+
+    <a href="https://github.com/ramlmn/Apache-Directory-Listing"><em>cs20.sec</em></a>
+  </footer>
+  
+  <script>
+    function joinUntil(array, index, separator) {
+      var result = [];
+
+      for (var i = 0; i <= index; i++) {
+        result.push(array[i]);
+      }
+
+      return result.join(separator);
+    }
+
+    // Make all the icon links unfocusable with tab
+    var iconLinks = document.querySelectorAll('.indexcolicon a');
+    Array.prototype.forEach.call(iconLinks, function(link) {
+      link.setAttribute('tabindex', '-1');
+    });
+
+    var path = document.querySelector('.js-path');
+    var pathParts = location.pathname.split('/');
+
+    // Removing empty strings
+    for (var i = 0; i < pathParts.length;) {
+      if (pathParts[i]) {
+        i++;
+      } else {
+        pathParts.splice(i, 1);
+      }
+    }
+
+    var pathContents = ['<a href="/">/</a>'];
+    Array.prototype.forEach.call(pathParts, function(part, index) {
+      pathContents.push('<a href="/' + joinUntil(pathParts, index, '/') + '">' + decodeURI(part) + '</a>');
+    });
+
+    path.innerHTML = pathContents.join('&rsaquo;');
+  </script>
+
+
+3. edit file .htaccess
+Tambahkan -> HeaderName header.html
+Tambahkan -> ReadmeName footer.html
+
+
+
+# .htaccess
+Options +Indexes
+
+IndexOptions FancyIndexing
+
+#Yang ingin ditampilkan
+#DirectoryIndex namafile.txt
+
+#Pengecualian file
+IndexIgnore index
+IndexIgnore index.nginx-debian.html
+
+<IfModule mod_autoindex.c>
+
+HeaderName /header.html
+ReadmeName /footer.html
+
+</IfModule>
+
+
+
+
+# Struktur Folder file
+	/html
+		.htaccess
+		header.html
+		footer.html
+
+
+
+# Tambah Domain Virtual
+locate hosts
+/etc/hosts
+sudo vi hosts
+
+127.0.0.1 	nizar.com
+127.0.0.1	warung.nizar.com
+
+:wq
+
+# Ganti directory root apache
+cd /etc/apache2/sites-available/
+sudo vi nizar-custom.conf
+
+-> isi nizar-custom.conf
+<VirtualHost *:80>
+#pilih satu domain yg iisikan di file hosts (/etc/hosts)
+ServerName nizar.com
+	#lokasi folder yg ingin dijadikan root directory apache
+	<Directory /media/sf_KILLING_EVE_(2018)/>
+		Options INdexes FollowSymlinks
+		AllowOverride all
+		Require all granted
+	</Directory>
+	#lokasi folder yg ingin dijadikan root directory apache
+	DocumentRoot /media/sf_KILLING_EVE_(2018)/
+</VirtualHost>
+
+save dah....
+
+#unmount semua mesin dulu
+sudo a2dissite *
+#mount mesin (bisa lebih dari satu)
+	##contoh hanya ingin 1 mesin
+	sudo a2ensite nizar.com
+	##contoh 2/lebih mesin
+	sudo a2ensite nizar.com warung.nizar.com
+
+	NB: nama domain mesin yg pertama akan dijadikan root directory, dan yg lain bisa diakses sesuai name server
+
+#restart apache
+sudo service apache2 restart
+
+
+
+
+
+
+
+
+-nizar
+

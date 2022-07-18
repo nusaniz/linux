@@ -1,0 +1,23 @@
+sudo apt install proxychains tor -y
+locate proxychains.conf
+
+# Edit proxychains.conf
+sudo vi proxychains.conf
+dynamic_chains
+
+# Comment / matikan
+static_chains
+random_chains
+
+# Menjalankan service tor
+sudo systemctl enable tor.service
+sudo service tor start | stop | restart | status
+
+# Menjalankan proxychains
+proxychains firefox
+
+# Cek jaringan proxychains
+proxychains nmap -sT -p 80,443 128.212.32.12
+
+
+-nizar

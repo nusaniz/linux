@@ -1,0 +1,13 @@
+1. download
+	https://ngrok.com/download
+2. ekstrak
+3. masukkan token
+	./ngrok config add-authtoken tokenkalian
+
+	example:
+	./ngrok config add-authtoken 28992ehe81je9812he918h
+4. Menjalankan Ngrok (harus di lokasi path ngrok)
+	http 80
+5. Done
+
+-nizar

@@ -1,0 +1,3 @@
+zip file.zip file.txt -e
+
+-tinggal masukkan password untuk enkripsi zip
