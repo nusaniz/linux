@@ -1,4 +1,16 @@
-sumber: https://linuxhint.com/gpg-command-ubuntu/
+sumber:
+https://linuxhint.com/gpg-command-ubuntu/
+https://askubuntu.com/questions/160253/encrypting-decrypting-a-single-file-in-ubuntu-12-04-lts/160334#160334
+https://giantleaplab.com/knowledge-base/development-blog/22-secure-transferring-of-data-using-gpg#benefits
+
+
+Apa yang akan terjadi ketika key kadaluwarsa?
+https://community.progress.com/s/article/Can-a-PGP-encryption-key-be-used-after-the-expiration-date
+Public key -> tidak dapat digunakan untuk enkripsi
+Private key -> akan selalu bisa digunakan untuk dekripsi, meskipun public key sudah kadaluwarsa
+
+
+
 
 # Ilustrasi / Cara kerja GPG (GnuPrivacyGuard)
 
@@ -99,4 +111,23 @@ gpg: encrypted with 3072-bit RSA key, ID B1AD329B3A437FC5, created 2022-07-20
 
 
 Done............
+
+
+
+# Hapus Key
+##Public key
+	gpg --delete-key nizar
+#Private key
+	gpg --delete-secret-keys nizar
+
+# Export
+##Public
+	gpg --export -a > pub-nizar.key
+##Private
+	gpg --export-secret-keys -a nizar > prv-nizar.key
+
+# Import
+##Public and Private
+	gpg --import pub-nizar.key
+	gpg --import prv-nizar.key
 
