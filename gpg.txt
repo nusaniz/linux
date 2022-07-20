@@ -1,0 +1,102 @@
+sumber: https://linuxhint.com/gpg-command-ubuntu/
+
+# Ilustrasi / Cara kerja GPG (GnuPrivacyGuard)
+
+Nizar		Oka
+File	--->	File
+
+File from nizar -> public key oka (encryption) -> oka (decrypt) private key oka
+
+NB:
+Hanya bisa dibuka dnegan private key Oka
+
+
+
+
+
+sudo apt install gnupg
+gpg --help
+
+# Membuat id key
+gpg --generate-key
+gpg --full-generate-key
+
+└─$ gpg --generate-key
+gpg (GnuPG) 2.2.35; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Note: Use "gpg --full-generate-key" for a full featured key generation dialog.
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name: dinda
+Email address: dinda@domain.com
+You selected this USER-ID:
+    "dinda <dinda@domain.com>"
+
+Change (N)ame, (E)mail, or (O)kay/(Q)uit? o
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: revocation certificate stored as '/home/kali/.gnupg/openpgp-revocs.d/D5E88111A1F83789F784B4D532B9BBAB521345B4.rev'
+public and secret key created and signed.
+
+pub   rsa3072 2022-07-20 [SC] [expires: 2024-07-19]
+      D5E88111A1F83789F784B4D532B9BBAB521345B4
+uid                      dinda <dinda@domain.com>
+sub   rsa3072 2022-07-20 [E] [expires: 2024-07-19]
+
+Done........
+
+-------------------------------------
+
+# Enkripsi dan Dekripsi
+Keterangan:
+ -e, --encrypt                      encrypt data
+ -c, --symmetric                    encryption only with symmetric cipher
+ -d, --decrypt                      decrypt data (default)
+ -a, --armor                        create ascii armored output
+ -o, --output FILE                  write output to FILE
+
+## Enkripsi:
+└─$ gpg -e -a vid.mp4                          
+You did not specify a user ID. (you may use "-r")
+
+Current recipients:
+
+Enter the user ID.  End with an empty line: dinda
+
+Current recipients:
+rsa3072/B1AD329B3A437FC5 2022-07-20 "dinda <dinda@domain.com>"
+
+Enter the user ID.  End with an empty line: 
+
+-> nanti akan ada file vid.mp4.asc
+-> isi vid.mp4.asc
+└─$ head vid.mp4.asc 
+-----BEGIN PGP MESSAGE-----
+
+hQGMA7GtMps6Q3/FAQv/b9J/2f02KFzdzk7ew65NxjCKdBPmdqnji0usikTXxJMB
+i6H0avgUYRMczvhNoO3rSxE/SBI6PA3XXs4AV5OkwGshFT0snuKFn52+gcjbTTqQ
+gK7TpnS2vISacpxzI8MaX6eBNYdLjEyXzSPkryssfPpzt96TlIH3cyCfgD5LKVuV
+ecBmmp76dT+41rp1l7paoOafHc/Kw2nU5jJfJrrBQ8OVzWyC7WNDT2wrdEBKdlV0
+d8S2DLnP4x0VvZLcyXCPB9u0Mo0/ikVKI7+tQiht2CI+Hk1k9oghQ23dywSIqt+0
+ro8V0O/cZSYZx1C2mJjZyoQ/2LmOT6sgBMiL6NiOvmLw0lzJO3rKVkGmjxJ7GytR
+FtASw7Kf2TeHX7cCvahwqpho+89+feAlPLO4XLKuz+vBpRZLB1A7Bxa4V5Stj5NT
+0udZKsm0z1b+pmf/IJ4JedC0C24r5xt9u354j5EoMofjYCHTNHrC6h8+EqI/kqMn
+
+
+## Dekripsi:
+└─$ gpg -d -o vid-buka.mp4 vid.mp4.asc 
+gpg: encrypted with 3072-bit RSA key, ID B1AD329B3A437FC5, created 2022-07-20
+      "dinda <dinda@domain.com>"
+
+
+Done............
+
