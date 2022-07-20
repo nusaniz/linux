@@ -2,6 +2,7 @@ sumber:
 https://linuxhint.com/gpg-command-ubuntu/
 https://askubuntu.com/questions/160253/encrypting-decrypting-a-single-file-in-ubuntu-12-04-lts/160334#160334
 https://giantleaplab.com/knowledge-base/development-blog/22-secure-transferring-of-data-using-gpg#benefits
+https://www.golinuxcloud.com/tutorial-encrypt-decrypt-sign-file-gpg-key-linux/
 
 
 Apa yang akan terjadi ketika key kadaluwarsa?
