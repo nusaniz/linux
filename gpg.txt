@@ -132,6 +132,37 @@ Done............
 	gpg --import pub-nizar.key
 	gpg --import prv-nizar.key
 
+
+# Import
+##Public and Private
+	gpg --import pub-nizar.key
+	gpg --import prv-nizar.key
+
+???
+Masalah yang terjadi ketika import pubic atau private key
+└─$ gpg --import bunga_0x905C964E_public.asc 
+gpg: key 077A5079905C964E was created 564 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 564 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 564 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 564 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E: new key but contains no user ID - skipped
+gpg: Total number processed: 1
+gpg:           w/o user IDs: 1
+
+TIME WARP OR CLOCK PROBLEM
+Solusi gunakan options --ignore-time-conflict
+└─$ gpg --import --ignore-time-conflict bunga_0x905C964E_public.asc 
+gpg: key 077A5079905C964E was created 551 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 551 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 551 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 551 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 551 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E was created 551 seconds in the future (time warp or clock problem)
+gpg: key 077A5079905C964E: public key "bunga" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+
+
 NB: 
 
 Kalau ingin import private dan public key -> yg diimport hanya secret key aja, public key akan otomatis muncul. Jadi tidak perlu import satu-satu.
