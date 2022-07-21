@@ -162,6 +162,23 @@ gpg: key 077A5079905C964E: public key "bunga" imported
 gpg: Total number processed: 1
 gpg:               imported: 1
 
+Ketika mengalami time conflict warp, maka tidak bisa --sign-key (harus nunggu sesuai waktu secod yg tertera).
+└─$ gpg --sign-key hanna
+gpg: key 6C08FA127E480AD2 was created 187 seconds in the future (time warp or clock problem)
+gpg: key 6C08FA127E480AD2 was created 187 seconds in the future (time warp or clock problem)
+
+sec  rsa3072/6C08FA127E480AD2
+     created: 2022-07-21  expires: never       usage: SCEA
+     trust: unknown       validity: unknown
+ssb  rsa3072/C5FD2FE6F99AB683
+     created: 2022-07-21  expires: never       usage:     
+[ unknown] (1). hanna
+
+User ID "hanna" is not self-signed.  Unable to sign.
+Nothing to sign with key 22A3831F3BC3222C
+
+Key not changed so no update needed.
+
 
 NB: 
 
