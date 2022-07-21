@@ -132,3 +132,16 @@ Done............
 	gpg --import pub-nizar.key
 	gpg --import prv-nizar.key
 
+NB: 
+
+Kalau ingin import private dan public key -> yg diimport hanya secret key aja, public key akan otomatis muncul. Jadi tidak perlu import satu-satu.
+Kalau ingin import public key saja -> yg import hanya public key.
+
+└─$ gpg --import pelangi_0xEA88F593_SECRET.asc 
+gpg: key 857E7369EA88F593: public key "pelangi" imported
+gpg: key 857E7369EA88F593: secret key imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg:       secret keys read: 1
+gpg:   secret keys imported: 1
+
