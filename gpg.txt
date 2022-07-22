@@ -193,3 +193,28 @@ gpg:               imported: 1
 gpg:       secret keys read: 1
 gpg:   secret keys imported: 1
 
+
+# Backup GPG Private key
+sudo apt install paperkey
+
+1. Export public key dalam format .gpg
+	gpg --export andini > andini-public.gpg
+Kalau kalian export .asc, nanti harus diconvert ke .gpg
+	gpg --dearmor andini-public.asc
+	nanti akan dapat file andini-public.asc.gpg
+
+2. Export secret key .asc menggunakan paperkey
+	gpg --export-secret-key andini | paperkey --output andini-secret-paperkey.asc
+
+3. Mengembalikan secret key paperkey menjadi secret key .gpg
+	paperkey --purbing andini-public.gpg --secrets andini-secret-paperkey.asc --output secret.gpg
+
+4. file secret.gpg siap diimpor
+	gpg --import secret.gpg
+
+NB:
+- file paperkey bisa dicetak / print kertas dan simpan di tempat yg aman
+- kalau ingin restore key, tinggal OCR kertas nya
+
+
+
