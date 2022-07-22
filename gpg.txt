@@ -195,6 +195,8 @@ gpg:   secret keys imported: 1
 
 
 # Backup GPG Private key
+https://wiki.archlinux.org/title/Paperkey
+
 sudo apt install paperkey
 
 1. Export public key dalam format .gpg
@@ -207,7 +209,7 @@ Kalau kalian export .asc, nanti harus diconvert ke .gpg
 	gpg --export-secret-key andini | paperkey --output andini-secret-paperkey.asc
 
 3. Mengembalikan secret key paperkey menjadi secret key .gpg
-	paperkey --purbing andini-public.gpg --secrets andini-secret-paperkey.asc --output secret.gpg
+	paperkey --pubring andini-public.gpg --secrets andini-secret-paperkey.asc --output secret.gpg
 
 4. file secret.gpg siap diimpor
 	gpg --import secret.gpg
