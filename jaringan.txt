@@ -1,0 +1,6 @@
+sudo ifconfig -a
+sudo ifconfig eth0 up
+sudo ifconfig eth0 down
+	NB: up / down untuk mengaktifkan dan mematikan
+sudo ifconfig eth0 192.168.1.23
+	NB: untuk kustom ip address
